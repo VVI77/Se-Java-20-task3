@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="8434" started-at="2016-07-17T20:34:06Z" finished-at="2016-07-17T20:34:15Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="8434" started-at="2016-07-17T20:34:06Z" finished-at="2016-07-17T20:34:15Z">
+      <class name="ru.stqa.selenium.LoginTest">
+        <test-method status="PASS" signature="initTestSuite()[pri:0, instance:ru.stqa.selenium.LoginTest@77caeb3e]" name="initTestSuite" is-config="true" duration-ms="175" started-at="2016-07-17T23:34:06Z" finished-at="2016-07-17T23:34:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTestSuite -->
+        <test-method status="PASS" signature="initWebDriver()[pri:0, instance:ru.stqa.selenium.LoginTest@77caeb3e]" name="initWebDriver" is-config="true" duration-ms="6512" started-at="2016-07-17T23:34:06Z" finished-at="2016-07-17T23:34:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWebDriver -->
+        <test-method status="PASS" signature="testLogin()[pri:0, instance:ru.stqa.selenium.LoginTest@77caeb3e]" name="testLogin" duration-ms="1899" started-at="2016-07-17T23:34:13Z" finished-at="2016-07-17T23:34:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:ru.stqa.selenium.LoginTest@77caeb3e]" name="tearDown" is-config="true" duration-ms="648" started-at="2016-07-17T23:34:15Z" finished-at="2016-07-17T23:34:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- ru.stqa.selenium.LoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
