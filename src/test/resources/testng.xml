@@ -3,8 +3,7 @@
 <suite name="Tests" verbose="5">
   <test name="Test1">
     <classes>
-      <class name="ru.stqa.selenium.LoginTest"/>
-      <class name="ru.stqa.selenium.AddMovie"/>
+       <class name="ru.stqa.selenium.AddMovie"/>
        <class name="ru.stqa.selenium.RemoveMovie"></class>     
     </classes>
   </test>  
