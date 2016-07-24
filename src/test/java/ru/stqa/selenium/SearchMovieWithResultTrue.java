@@ -5,7 +5,7 @@ import org.testng.annotations.*;
 import org.openqa.selenium.*;
 
 
-public class SearchMovieWithResaltTrue extends TestNgTestBase{
+public class SearchMovieWithResultTrue extends TestNgTestBase{
 	private boolean acceptNextAlert = true;
 
 
