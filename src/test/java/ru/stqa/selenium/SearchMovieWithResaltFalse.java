@@ -1,30 +1,35 @@
 package ru.stqa.selenium;
 
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-
 import org.testng.Assert;
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
-public class SearchMovie extends TestNgTestBase{
+
+public class SearchMovieWithResaltFalse extends TestNgTestBase{
 	private boolean acceptNextAlert = true;
 
 
   @Test
-  public void testSearchMovie() throws Exception {
+  public void testSearchMovieResFalse() throws Exception {
 	testLogin();  
+	String searchWord = "Andsdfasdkqdjasduuuwksd";
     driver.findElement(By.id("q")).clear();
-    driver.findElement(By.id("q")).sendKeys("and");
+    driver.findElement(By.id("q")).sendKeys(searchWord);
     String xPathQuery = "//div[@id='results']//div[@class='title']"
-    		+ "[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'and')]";
+    		+ "[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '"
+    		+ searchWord.toLowerCase() + "')]";
     int countSearchElements = driver.findElements(By.xpath(xPathQuery)).size();
-	System.out.println("************* countSearchElements = " + countSearchElements);
     driver.findElement(By.id("q")).sendKeys(Keys.ENTER);
-    
+    System.out.println("************* String for search: '" + searchWord + "'.");
+    if (countSearchElements > 0 ){
+    	while (driver.findElements(By.xpath("//div[@id='results']/a")).size() < countSearchElements) {}
+    	System.out.println("************* We found and displayed " + countSearchElements + " movies.");
+    }
+    else {
+    	while (!isElementPresent(By.xpath("//div[@id='results']/div[@class='content']"))) {};
+    	System.out.println("************* No movies where found.");
+    }
+    	
     testLogout();
   }
 
