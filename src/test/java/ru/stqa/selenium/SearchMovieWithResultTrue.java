@@ -11,8 +11,18 @@ public class SearchMovieWithResultTrue extends TestNgTestBase{
 
   @Test
   public void testSearchMovieResTrue() throws Exception {
-	testLogin();  
-	String searchWord = "bl";
+	testLogin();
+	Thread.sleep(500);
+	int movieCount = driver.findElements(By.xpath("//div[@id='results']/a")).size();
+	if (movieCount == 0) {
+		  addOneMovie("Forrest Gump", "1994");
+		  addOneMovie("Gladiator", "2000");
+		  addOneMovie("The Prestige", "2006");
+		  addOneMovie("Back to the Future", "1985");
+		  addOneMovie("Pulp Fiction", "1994");
+	}
+		
+	String searchWord = "st";
     driver.findElement(By.id("q")).clear();
     driver.findElement(By.id("q")).sendKeys(searchWord);
     String xPathQuery = "//div[@id='results']//div[@class='title']"
@@ -21,15 +31,12 @@ public class SearchMovieWithResultTrue extends TestNgTestBase{
     int countSearchElements = driver.findElements(By.xpath(xPathQuery)).size();
     driver.findElement(By.id("q")).sendKeys(Keys.ENTER);
     System.out.println("************* String for search: '" + searchWord + "'.");
-    if (countSearchElements > 0 ){
-    	while (driver.findElements(By.xpath("//div[@id='results']/a")).size() < countSearchElements) {}
-    	System.out.println("************* We found and displayed " + countSearchElements + " movies.");
-    }
-    else {
-    	while (!isElementPresent(By.xpath("//div[@id='results']/div[@class='content']"))) {};
-    	System.out.println("************* No movies where found.");
-    }
-    	
+    while (driver.findElements(By.xpath("//div[@id='results']/a")).size() < countSearchElements) {}
+   	if (driver.findElements(By.xpath("//div[@id='results']/a")).size() == countSearchElements)
+   		System.out.println("************* We found and displayed " + countSearchElements + " movies.");
+   	else
+   		throw new RuntimeException("Error in search...");
+   	
     testLogout();
   }
 
@@ -62,6 +69,24 @@ public class SearchMovieWithResultTrue extends TestNgTestBase{
 	    	try { if (isElementPresent(By.cssSelector("div#login"))) break; } catch (Exception e) {}
 	    	Thread.sleep(1000); */
 	    }
+  
+  private void addOneMovie(String movieName, String movieYear) throws Exception {
+	  int movieCount = driver.findElements(By.xpath("//div[@id='results']/a")).size();   
+	     driver.findElement(By.cssSelector("img[alt=\"Add movie\"]")).click();
+	     driver.findElement(By.name("name")).clear();
+	     driver.findElement(By.name("name")).sendKeys(movieName);
+	     driver.findElement(By.name("year")).clear();
+	     driver.findElement(By.name("year")).sendKeys(movieYear);
+	     driver.findElement(By.cssSelector("img[alt=\"Save\"]")).click();
+	     driver.findElement(By.cssSelector("h1")).click();
+	     while (driver.findElements(By.cssSelector("div#results a")).size() < movieCount) {}
+	     movieCount = driver.findElements(By.cssSelector("div#results a")).size() - movieCount;
+	     if (movieCount == 1) 
+	      System.out.println("************* The movie " + movieName + " (" + movieYear + 
+	        ") is successfully added to the list");
+	     else
+	      throw new RuntimeException("************* The new movie is NOT added to the list");
+ }
   
   private String closeAlertAndGetItsText() {
 	    try {

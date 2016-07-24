@@ -2,28 +2,28 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8109" started-at="2016-07-24T11:17:41Z" finished-at="2016-07-24T11:17:49Z">
+  <suite name="Default suite" duration-ms="8380" started-at="2016-07-24T23:29:53Z" finished-at="2016-07-24T23:30:01Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8109" started-at="2016-07-24T11:17:41Z" finished-at="2016-07-24T11:17:49Z">
-      <class name="ru.stqa.selenium.SearchMovieWithResaltTrue">
-        <test-method status="PASS" signature="initTestSuite()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResaltTrue@6d4b1c02]" name="initTestSuite" is-config="true" duration-ms="108" started-at="2016-07-24T14:17:41Z" finished-at="2016-07-24T14:17:41Z">
+    <test name="Default test" duration-ms="8380" started-at="2016-07-24T23:29:53Z" finished-at="2016-07-24T23:30:01Z">
+      <class name="ru.stqa.selenium.SearchMovieWithResultFalse">
+        <test-method status="PASS" signature="initTestSuite()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResultFalse@6d4b1c02]" name="initTestSuite" is-config="true" duration-ms="90" started-at="2016-07-25T02:29:53Z" finished-at="2016-07-25T02:29:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initTestSuite -->
-        <test-method status="PASS" signature="initWebDriver()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResaltTrue@6d4b1c02]" name="initWebDriver" is-config="true" duration-ms="5411" started-at="2016-07-24T14:17:41Z" finished-at="2016-07-24T14:17:47Z">
+        <test-method status="PASS" signature="initWebDriver()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResultFalse@6d4b1c02]" name="initWebDriver" is-config="true" duration-ms="5386" started-at="2016-07-25T02:29:53Z" finished-at="2016-07-25T02:29:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initWebDriver -->
-        <test-method status="PASS" signature="testSearchMovieResTrue()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResaltTrue@6d4b1c02]" name="testSearchMovieResTrue" duration-ms="2684" started-at="2016-07-24T14:17:47Z" finished-at="2016-07-24T14:17:49Z">
+        <test-method status="PASS" signature="testSearchMovieResFalse()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResultFalse@6d4b1c02]" name="testSearchMovieResFalse" duration-ms="2972" started-at="2016-07-25T02:29:59Z" finished-at="2016-07-25T02:30:01Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testSearchMovieResTrue -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResaltTrue@6d4b1c02]" name="tearDown" is-config="true" duration-ms="611" started-at="2016-07-24T14:17:49Z" finished-at="2016-07-24T14:17:50Z">
+        </test-method> <!-- testSearchMovieResFalse -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:ru.stqa.selenium.SearchMovieWithResultFalse@6d4b1c02]" name="tearDown" is-config="true" duration-ms="647" started-at="2016-07-25T02:30:02Z" finished-at="2016-07-25T02:30:02Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- ru.stqa.selenium.SearchMovieWithResaltTrue -->
+      </class> <!-- ru.stqa.selenium.SearchMovieWithResultFalse -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
