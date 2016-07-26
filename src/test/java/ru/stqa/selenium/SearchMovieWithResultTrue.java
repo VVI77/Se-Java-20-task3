@@ -2,6 +2,9 @@ package ru.stqa.selenium;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
+
+import com.thoughtworks.selenium.webdriven.commands.IsElementPresent;
+
 import org.openqa.selenium.*;
 
 
@@ -16,11 +19,10 @@ public class SearchMovieWithResultTrue extends TestNgTestBase{
 	int movieCount = driver.findElements(By.xpath("//div[@id='results']/a")).size();
 	if (movieCount == 0) {
 		  addOneMovie("Forrest Gump", "1994");
-		  addOneMovie("Gladiator", "2000");
 		  addOneMovie("The Prestige", "2006");
-		  addOneMovie("Back to the Future", "1985");
 		  addOneMovie("Pulp Fiction", "1994");
 	}
+	movieCount = driver.findElements(By.xpath("//div[@id='results']/a")).size();
 		
 	String searchWord = "st";
     driver.findElement(By.id("q")).clear();
@@ -31,12 +33,15 @@ public class SearchMovieWithResultTrue extends TestNgTestBase{
     int countSearchElements = driver.findElements(By.xpath(xPathQuery)).size();
     driver.findElement(By.id("q")).sendKeys(Keys.ENTER);
     System.out.println("************* String for search: '" + searchWord + "'.");
-    while (driver.findElements(By.xpath("//div[@id='results']/a")).size() < countSearchElements) {}
+    while (driver.findElements(By.xpath("//div[@id='results']/a")).size() != countSearchElements) {}
+    System.out.println("************* countSearchElements = " + countSearchElements);
+    System.out.println("************* search Result = " + driver.findElements(By.xpath("//div[@id='results']/a")).size());
    	if (driver.findElements(By.xpath("//div[@id='results']/a")).size() == countSearchElements)
    		System.out.println("************* We found and displayed " + countSearchElements + " movies.");
    	else
    		throw new RuntimeException("Error in search...");
    	
+   	deleteAllMovies(movieCount);
     testLogout();
   }
 
@@ -64,10 +69,6 @@ public class SearchMovieWithResultTrue extends TestNgTestBase{
 	  Assert.assertTrue(isElementPresent(By.cssSelector("div.button > div")));  
 	  driver.findElement(By.linkText("Log out")).click();
 	  Assert.assertTrue(closeAlertAndGetItsText().matches("^Are you sure you want to log out[\\s\\S]$"));
-	  /*  for (int second = 0;; second++) {
-	    	if (second >= 60) fail("timeout");
-	    	try { if (isElementPresent(By.cssSelector("div#login"))) break; } catch (Exception e) {}
-	    	Thread.sleep(1000); */
 	    }
   
   private void addOneMovie(String movieName, String movieYear) throws Exception {
@@ -79,13 +80,23 @@ public class SearchMovieWithResultTrue extends TestNgTestBase{
 	     driver.findElement(By.name("year")).sendKeys(movieYear);
 	     driver.findElement(By.cssSelector("img[alt=\"Save\"]")).click();
 	     driver.findElement(By.cssSelector("h1")).click();
-	     while (driver.findElements(By.cssSelector("div#results a")).size() < movieCount) {}
-	     movieCount = driver.findElements(By.cssSelector("div#results a")).size() - movieCount;
-	     if (movieCount == 1) 
-	      System.out.println("************* The movie " + movieName + " (" + movieYear + 
-	        ") is successfully added to the list");
-	     else
-	      throw new RuntimeException("************* The new movie is NOT added to the list");
+	     while (driver.findElements(By.xpath("//div[@id='results']/a")).size() < movieCount) {}
+ }
+
+  private void deleteAllMovies(int size) throws Exception {
+	  int movieCount = size;
+	  driver.findElement(By.id("q")).clear();
+	  driver.findElement(By.id("q")).sendKeys(Keys.ENTER);
+	  while (driver.findElements(By.xpath("//div[@id='results']/a")).size() != movieCount) {}
+	  while (movieCount > 0) {
+			System.out.println("************* movieCount before deleted: " + movieCount);
+		    driver.findElement(By.xpath("//div[@class='movie_cover']/div[1]")).click();
+		    driver.findElement(By.cssSelector("img[alt=\"Remove\"]")).click();
+		    Assert.assertTrue(closeAlertAndGetItsText().matches("^Are you sure you want to remove this[\\s\\S]$"));
+		    while (driver.findElements(By.xpath("//div[@id='results']/a")).size() != movieCount-1) {}
+			System.out.println("************* movieCount after deleted: " + driver.findElements(By.cssSelector("div#results a")).size());
+		    movieCount = driver.findElements(By.xpath("//div[@id='results']/a")).size();
+	  }
  }
   
   private String closeAlertAndGetItsText() {

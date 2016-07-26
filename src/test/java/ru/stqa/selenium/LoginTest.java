@@ -18,12 +18,13 @@ public class LoginTest extends TestNgTestBase {
   }
   
   
-private boolean isElementPresent(By by) {
+  private boolean isElementPresent(By by) {
 	    try {
 	      driver.findElement(by);
 	      return true;
-	    } catch (NoSuchElementException e) {
+	    } 
+	    catch (NoSuchElementException e) {
 	      return false;
 	    }
-	  }
+   }	
 }
